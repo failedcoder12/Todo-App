@@ -70,7 +70,22 @@ MongoClient.connect('mongodb://localhost:27017', (err, client)=> {
 	// });
 
 	//findONe and delete
-	db.collection('Todos').findOneAndDelete({completed: true}).then((result)=>{
+	// db.collection('Todos').findOneAndDelete({completed: true}).then((result)=>{
+	// 	console.log(result);
+	// });
+
+	//DBUpdate --------------------------------------------------------------------------
+
+	db.collection('Todos').findOneAndUpdate({_id: new ObjectID('5ac2358374f10a49f893a25f')},{
+		$set: {
+			completed: true
+		},
+		$inc: {
+			time: 1
+		}
+	},{
+		returnOriginal: false
+	}).then((result)=>{
 		console.log(result);
 	});
 });
